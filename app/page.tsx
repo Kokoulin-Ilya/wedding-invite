@@ -124,29 +124,6 @@ export default function WeddingInvitation() {
               {data.dressCode}
             </p>
           </div>
-
-          <div className="px-8 pb-16 text-center">
-            <h3 className="text-4xl mb-8 leading-tight text-[#4f4d4d]">
-              Пожалуйста, подтвердите свое присутствие
-            </h3>
-
-            <form className="max-w-md mx-auto space-y-4">
-              <input
-                type="text"
-                placeholder="Ваше имя и фамилия"
-                className="w-full border border-neutral-300 p-4 bg-white text-[#4f4d4d]"
-              />
-
-              <select className="w-full border border-neutral-300 p-4 bg-white text-[#4f4d4d]">
-                <option>Смогу присутствовать</option>
-                <option>К сожалению, не смогу</option>
-              </select>
-
-              <button className="w-full bg-neutral-800 text-white py-4 uppercase tracking-[0.2em] hover:bg-black transition">
-                Отправить
-              </button>
-            </form>
-          </div>
         </div>
 
         {/* RIGHT SIDE */}
