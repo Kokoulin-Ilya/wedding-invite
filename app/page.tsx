@@ -27,7 +27,6 @@ export default function WeddingInvitation() {
     ],
   };
 
-  // Логика таймера
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -36,13 +35,15 @@ export default function WeddingInvitation() {
   });
 
   useEffect(() => {
-    const targetDate = new Date(2026, 8, 11, 17, 0, 0); // 11 сентября 2026, 17:00
+    // ИСПРАВЛЕНО: Явно указываем дату в UTC+3 (Москва/Таганрог)
+    const targetDate = new Date('2026-09-11T17:00:00+03:00');
 
     const updateTimer = () => {
       const now = new Date();
-      const difference = targetDate - now;
+      const difference = targetDate.getTime() - now.getTime();
 
-      if (difference <= 0) {
+      // Если дата прошла или ошибка
+      if (difference <= 0 || isNaN(difference)) {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
         return;
       }
@@ -55,9 +56,13 @@ export default function WeddingInvitation() {
       setTimeLeft({ days, hours, minutes, seconds });
     };
 
+    // Запускаем сразу
     updateTimer();
+    
+    // Запускаем интервал
     const interval = setInterval(updateTimer, 1000);
 
+    // Очищаем при размонтировании
     return () => clearInterval(interval);
   }, []);
 
